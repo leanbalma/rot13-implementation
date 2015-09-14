@@ -1,9 +1,9 @@
-<!-- <div class="jumbotron"> -->
+<div style="height:50vh;">
   <h3>Input Text:</h3>
-  <textarea ng-model="inputText" style="width: 100%; height: 50px;"></textarea>
+  <textarea ng-model="inputText" class="text-field"></textarea>
 
-  <button class="btn btn-primary" ng-click="encryptDecryptText()">Encrypt / Decrypt</button>
+  <button class="btn btn-primary" style="width: 100%" ng-click="encryptDecryptText()">Encrypt / Decrypt</button>
 
   <h3>Output Text:</h3>
-  <p ng-bind="outputText"></p>
-<!-- </div> -->
+  <textarea ng-model="outputText" class="text-field" readonly></textarea>
+</div>

@@ -10,34 +10,56 @@
 angular.module('rot13ImplementationApp')
   .service('rot13Service', function () {
 
+    // Ascii values.
+    var ASCII_a = 97;
+    var ASCII_z = 122;
+    var ASCII_A = 65;
+    var ASCII_Z = 90;
+
+    function isLowercase(asciiValue) {
+      if(asciiValue >= ASCII_a && asciiValue <= ASCII_z) {
+        return true;
+      }
+
+      return false;
+    }
+
+    function isUppercase(asciiValue) {
+      if(asciiValue >= ASCII_A && asciiValue <= ASCII_Z) {
+        return true;
+      }
+
+      return false;
+    }
+
     return {
-      /* A = 65
-       * Z = 90
-       * a = 97
-       * z = 122
-       */
       encryptDecryptText: function(inputText) {
         var outputText = '';
+        // For each character in inputText...
         angular.forEach(inputText, function(value) {
-          console.log(value);
+          // Get the ascii value of the character.
           var asciiValue = value.charCodeAt(0);
-          console.log(asciiValue);
-          if((asciiValue >= 65 && asciiValue <= 90) || (asciiValue >= 97 && asciiValue <= 122) ) {
+
+          if(isUppercase(asciiValue) || isLowercase(asciiValue)) {
+            // Move the charater to the right 13 times.
             var rotatedAscii = asciiValue + 13;
 
-            if((asciiValue >= 65 && asciiValue <= 90) && rotatedAscii > 90) {
-              rotatedAscii = rotatedAscii - 90 - 1 + 65;
+            // Check for overflows...
+            if(isUppercase(asciiValue) && rotatedAscii > 90) {
+              rotatedAscii = rotatedAscii - ASCII_Z + ASCII_A - 1;
             }
-            else if( (asciiValue >= 97 && asciiValue <= 122) && rotatedAscii > 122) {
-              rotatedAscii = rotatedAscii - 122 - 1 + 97;
+            else if(isLowercase(asciiValue) && rotatedAscii > 122) {
+              rotatedAscii = rotatedAscii - ASCII_z + ASCII_a - 1;
             }
             outputText += (String.fromCharCode(rotatedAscii));
           }
           else {
+            // Do anything if the character is not a letter.
             outputText += value;
           }
+
         });
-        console.log(outputText);
+
         return outputText;
       }
     };
