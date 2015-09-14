@@ -1,11 +1,15 @@
 {
   "name": "rot13implementation",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "bower": "^1.5.2"
+  },
   "repository": {},
   "devDependencies": {
+    "bower": "^1.5.2",
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^2.0.0",
+    "grunt-cli": "^0.1.13",
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-compass": "^1.0.0",
